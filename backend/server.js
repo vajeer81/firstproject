@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use("/uploard", express.static("backend/IMG"))
 const { errorHandler } = require('./middleware/errorMiddleware')
 app.use(errorHandler)
+app.use("/api/tudo",require("./routes/TudoRoutes"))
 app.use('/api/userAuth', require('./routes/userAUTHroutes'))
 app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/product', require('./routes/productRoutes'))
@@ -31,7 +32,7 @@ app.post("/uploard", uploard.single("img"), async (req, res) => {
         brand: req.body.brand,
         price:req.body.price,
         img: `http://localhost:8000/uploard/${req.file.filename}`
-    })
+    });
     res.send(data)
     // res.json({
     //     sucess : 1,

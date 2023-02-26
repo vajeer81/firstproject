@@ -9,7 +9,7 @@ const UserAuthSchema = new mongoose.Schema({
         required: [true, 'Please add an Email']
     },
     password: {
-        type: Number,
+        type: String,
         required: [true, 'Please add an password']
     },
 
