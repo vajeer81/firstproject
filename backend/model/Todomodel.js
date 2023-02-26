@@ -1,28 +1,44 @@
 const mongoose = require('mongoose');
 const tudos = new mongoose.Schema({
     fistname:{
-        type:String
+        type:String,
+    required:[true,'Please add a fistname']
+
     },
     lastname:{
-        type:String
+        type:String,
+    required:[true,'Please add a lastname']
+
     },
     email:{
-        type:String
+        type:String,
+    required:[true,'Please add a email']
+
     },
     phone:{
-        type:Number
+        type:Number,
+    required:[true,'Please add a phone']
+
     },
     pincode:{
         type:Number,
+    required:[true,'Please add a pincode']
+
     },
     address:{
-        type:String
+        type:String,
+    required:[true,'Please add a address']
+
     },
     state:{
-        type : String
+        type : String,
+    required:[true,'Please add a state']
+
     },
     password:{
-        type:String
+        type:String,
+    required:[true,'Please add a pasword']
+
     }
 
 },
