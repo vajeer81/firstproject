@@ -15,6 +15,7 @@ app.use('/api/userAuth', require('./routes/userAUTHroutes'))
 app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/product', require('./routes/productRoutes'))
 app.use("/api/course",require("./routes/studentRoutes/studentcourseRoutes"))
+app.use("/api/student",require("./routes/studentRoutes/studentRoutes"))
 const mobileprodect = require("./model/mobileModel")
 app.use("/api/subject",require("./routes/studentRoutes/studentsubRoutes"))
 app.use("/api/country",require("./routes/studentRoutes/studentcountryRouter"))
