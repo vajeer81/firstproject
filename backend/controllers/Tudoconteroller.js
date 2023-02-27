@@ -19,7 +19,7 @@ const getMe = async (req, res) => {
     const { _id, fistname, email } = await tudos.findById(req.tudoes.id)
     res.status(200).json({
         id: _id,
-        fistname, 
+        fistname,
         email,
         // token: generateToken(tudos._id)
 
@@ -27,12 +27,14 @@ const getMe = async (req, res) => {
 }
 
 
+
+
 const posttudo = async (req, res) => {
     const { fistname, lastname, email, phone, pincode, address, password, state } = req.body
-    // if (!fistname || !lastname || !email || !phone || !pincode || !address || !password || !state) {
-    //     res.status(400)
-    //   res.send ("please add all fields");
-    // }
+    if (!fistname || !lastname || !email || !phone || !pincode || !address || !password || !state) {
+        res.status(400)
+        res.send("please add all fields");
+    }
 
     // const exits = tudos.findOne({ email })
     // if (exits) {
@@ -45,11 +47,17 @@ const posttudo = async (req, res) => {
     //     }
     // }
 
-    // let checkemail = email.includes("@gmail.com")
-    // if (!checkemail) {
-    //     res.status(400)
-    //     throw new Error ("please add the @gmail.com")
-    // }
+    let checkemail = email.includes("@gmail.com")
+    if (!checkemail) {
+        res.status(400)
+        throw new Error("please add the @gmail.com")
+    }
+
+
+
+    // const salt =  bcrypt.getSalt(10)
+    //  const hashedPassword = await bcrypt.hash(password,10);
+    // const passexits = tudos.findOne(password)
 
     let data = await tudos.create({
         fistname,
@@ -65,15 +73,17 @@ const posttudo = async (req, res) => {
     res.status(201).json({
         fistname: data.fistname,
         email: data.email,
+        phone: data.phone,
+        state: data.state,
         token: generateToken(data._id)
     })
 }
 
 
 const logintudo = async (req, res) => {
-    const { email, } = req.body
-    const finds = await tudos.findOne({ email })
-    if (finds && finds.fistname) {
+    const { email, password } = req.body
+    const finds = await tudos.findOne({ email: email })
+    if (finds && finds.password) {
         res.status(201).json({
             fistname: finds.fistname,
             phone: finds.phone,
