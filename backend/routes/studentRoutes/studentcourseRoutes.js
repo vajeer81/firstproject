@@ -4,7 +4,7 @@ const Router = express.Router()
 Router.use(express.json())
 const {getcourse,addcourse} = require("../../controllers/studentcontrolles/studentcoursecontrollers")
 
-Router.get("/",getcourse)
+Router.get("/:_id",getcourse)
 Router.post("/",addcourse)
 
 module.exports = Router

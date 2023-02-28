@@ -19,6 +19,8 @@ app.use("/api/student",require("./routes/studentRoutes/studentRoutes"))
 const mobileprodect = require("./model/mobileModel")
 app.use("/api/subject",require("./routes/studentRoutes/studentsubRoutes"))
 app.use("/api/country",require("./routes/studentRoutes/studentcountryRouter"))
+app.use("/api/singup",require("./routes/SingupRoutes"))
+app.use("/api/profile",require("./routes/profileRoutes"))
 const storage = multer.diskStorage({
     destination: "./backend/IMG/",
     filename: (req, file, cb) => {

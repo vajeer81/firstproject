@@ -5,6 +5,8 @@ const cours = require("../../model/studentmodel/studentcoursemodel")
 
 
 const addstudent = async (req, res) => {
+  let fidsd = await localStorage.getItem("course")
+  console.log(fidsd);
   // const {course,country,subname} = req.body
   const { name, country, schoolname, number, coursse, gender, email, subject } = req.body
   const countrys = await countr.findOne({})
@@ -19,7 +21,7 @@ const addstudent = async (req, res) => {
 
 
 
-  if (countrys.CountryName == country && subjecting.subname == subject) {
+  if (countrys.CountryName == country && subjecting.subname == subject  ) {
     const data = await student.create({
       name,
       country,
@@ -31,7 +33,7 @@ const addstudent = async (req, res) => {
       subject,
     })
 
-    // res.send(data) 
+    res.send(data) 
   } else {
     res.send("not found")
 

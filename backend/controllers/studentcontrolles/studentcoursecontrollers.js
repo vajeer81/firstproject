@@ -2,8 +2,9 @@ const courses = require("../../model/studentmodel/studentcoursemodel")
 
 
 const getcourse = async (req, res) => {
-    const data = await courses.find({})
+    const data = await courses.findById(req.params._id)
     res.send(data)
+    
 }
 
 
