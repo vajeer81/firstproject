@@ -8,7 +8,7 @@ const asyncHandler = require('express-async-handler');
 
 
 const getproduct = async (req, res) => {
-    let data = await product.find();
+    let data = await product.find({});
     console.log("======>", data);
     res.status(200).json(data)
 }
@@ -17,11 +17,20 @@ const getproduct = async (req, res) => {
 
 const addproduct = asyncHandler(async (req, res) => {
 
-    const { title, dis, price, quentity } = req.body
-    if (!title && !dis && !price && !quentity) {
+    const { title, dis, price, reting, img, color, size } = req.body
+    if (!title && !dis && !price && !reting && !img && !color && !size) {
         res.status(400).json({ message: "Please add all Filed" })
     }
-    let data = await product.create({ title: req.body.title, dis: req.body.dis, price: req.body.price, quentity: req.body.quentity,token:generateToken.req._id })
+    
+    let data = await product.create({
+        title,
+        dis,
+        img,
+        price,
+        reting,
+        color,
+        size
+    });
     console.log("====>", data);
     res.status(200).json(data)
 })
@@ -32,6 +41,7 @@ const updateproduct = asyncHandler(async (req, res) => {
         res.status(400);
         res.send("user not found");
     }
+
     const updateusers = await user.findByIdAndUpdate(req.params._id, req.body, {
         new: true
     })
@@ -53,9 +63,9 @@ const deleteproduct = asyncHandler(async (req, res) => {
     res.status(200).json({ message: `delete data ${req.params._id}` });
 })
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "20d" })
-}
+// const generateToken = (id) => {
+//     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "20d" })
+// }
 
 module.exports = {
     getproduct, addproduct, updateproduct, deleteproduct

@@ -21,6 +21,7 @@ app.use("/api/subject",require("./routes/studentRoutes/studentsubRoutes"))
 app.use("/api/country",require("./routes/studentRoutes/studentcountryRouter"))
 app.use("/api/singup",require("./routes/SingupRoutes"))
 app.use("/api/profile",require("./routes/profileRoutes"))
+app.use("/api/Employ",require("./routes/EmployRoutes"))
 const storage = multer.diskStorage({
     destination: "./backend/IMG/",
     filename: (req, file, cb) => {
@@ -37,14 +38,14 @@ app.post("/uploard", uploard.single("img"), async (req, res) => {
         mobile: req.body.mobile,
         brand: req.body.brand,
         price:req.body.price,
-        img: `http://localhost:8000/uploard/${req.file.filename}`
+        img:`http://localhost:8000/uploard/${req.file.filename}`
     });
     res.send(data)
     // res.json({
     //     sucess : 1,
     //     file_url : `http://localhost:8000/uploard/${req.file.filename}`
     // })
-})
+}) 
 
 const ConnectDB = require('./config/db');
 // const { diskStorage } = require('multer');
@@ -53,7 +54,6 @@ ConnectDB()
 app.listen(port, () => {
     console.log(`port is colled${port}`);
 })
-
 
 
 console.log(process.env.MONGO_URL);
