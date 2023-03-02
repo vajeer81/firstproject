@@ -12,18 +12,33 @@ const getuser=asyncHandler (async(req,res)=>{
 })
 
 const setUsers= asyncHandler(async(req,res)=>{
+try {
     const { name , email,password,number} = req.body
-    if(!name && !email,!password && !number){
+    if(!name || !email || !password || !number){
         res.status(400)
         throw new Error('Please add a all body filds')
     }
     
-    let data= await user.create({name:req.body.name ,email:req.body.email,password:req.body.password,number:req.body.number})
+    let data= await user.create({
+        name,
+        email,
+        password,
+        number
+    })
     console.log("====>",data);
     res.status(200).json(data)
-})
-const loginserver=asyncHandler(async (req,res)=>{
+} catch (error) {
+    res.status(404).json(error)
+}
 
+    
+})
+
+
+
+
+
+const loginserver=asyncHandler(async (req,res)=>{
     const {email,password} = req.body;
     const userExists = await login.findOne({ email })
         if (userExists) {
@@ -40,6 +55,59 @@ const loginserver=asyncHandler(async (req,res)=>{
     res.status(200).json(result)
     }
 })
+
+
+
+
+
+
+const updateuser=asyncHandler( async (req,res)=>{
+    let findid = await user.findById(req.params._id);
+    if(!findid){
+        res.status(400);
+        res.send("user not found");
+    }
+    const updateusers = await user.findByIdAndUpdate(req.params._id,req.body,{
+        new : true
+    })
+    console.log("=====>",updateusers);
+    res.status(200).json({message : `updatedata ${req.params._id}`})
+})
+
+const deleteuser= asyncHandler( async(req,res)=>{
+    let findid = await user.findById(req.params._id);
+    if(!findid){
+        res.status(400);
+        res.send("user not found");
+    }
+     await findid.remove();
+   
+    res.status(200).json({message: `delete data ${req.params._id}`});
+})
+
+
+
+
+module.exports={
+    getuser,
+    setUsers,
+    updateuser,
+    deleteuser,
+    loginserver,
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const search = asyncHandler(async(req,res)=>{
 //  let data = await user.find(req.params_id)
 //  res.status(200).json(data)
@@ -78,36 +146,3 @@ const loginserver=asyncHandler(async (req,res)=>{
 
 
 // })
-
-const updateuser=asyncHandler( async (req,res)=>{
-    let findid = await user.findById(req.params._id);
-    if(!findid){
-        res.status(400);
-        res.send("user not found");
-    }
-    const updateusers = await user.findByIdAndUpdate(req.params._id,req.body,{
-        new : true
-    })
-    console.log("=====>",updateusers);
-    res.status(200).json({message : `updatedata ${req.params._id}`})
-})
-
-const deleteuser= asyncHandler( async(req,res)=>{
-    let findid = await user.findById(req.params._id);
-    if(!findid){
-        res.status(400);
-        res.send("user not found");
-    }
-     await findid.remove();
-
-   
-    res.status(200).json({message: `delete data ${req.params._id}`});
-})
-
-module.exports={
-    getuser,
-    setUsers,
-    updateuser,
-    deleteuser,
-    loginserver,
-}

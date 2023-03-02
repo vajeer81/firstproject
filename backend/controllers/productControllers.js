@@ -14,6 +14,12 @@ const getproduct = async (req, res) => {
 }
 
 
+const findids = async (req,res)=>{
+    let data = await product.findById(req.params._id)
+    res.status(200).json(data)
+}
+
+
 
 const addproduct = asyncHandler(async (req, res) => {
 
@@ -21,7 +27,7 @@ const addproduct = asyncHandler(async (req, res) => {
     if (!title && !dis && !price && !reting && !img && !color && !size) {
         res.status(400).json({ message: "Please add all Filed" })
     }
-    
+
     let data = await product.create({
         title,
         dis,
@@ -31,6 +37,9 @@ const addproduct = asyncHandler(async (req, res) => {
         color,
         size
     });
+    if(!data){
+        res.status(404).json({error:"data is not difine"})
+    }
     console.log("====>", data);
     res.status(200).json(data)
 })
@@ -68,5 +77,5 @@ const deleteproduct = asyncHandler(async (req, res) => {
 // }
 
 module.exports = {
-    getproduct, addproduct, updateproduct, deleteproduct
+    getproduct, addproduct, updateproduct, deleteproduct,findids
 }
