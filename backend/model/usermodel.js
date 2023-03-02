@@ -1,28 +1,29 @@
 const mongoose = require("mongoose")
 const userschema = new mongoose.Schema({
-    name:{
-        type:String
+    name: {
+        type: String,
     },
-    email:{
-        type:String
+    email: {
+        type: String,
+
     },
-    number:{
-        type:number
+    number: {
+        type: Number,
     },
-    profile:{
-        type:String
+    profile: {
+        type: String
     },
-    employ:{
-        type:number
+    employ: {
+        type: String
     },
-    student:{
-        type:String
+    student: {
+        type: String
     },
-    product:{
-        type:String
+    product: {
+        type: String
     }
-    
+
 
 })
 
-module.exports = mongoose.model("newdatauser",userschema)
+module.exports = mongoose.model("newdatauser", userschema)
