@@ -17,17 +17,21 @@ const getuser = async (req, res) => {
 const postuser = async (req, res) => {
     try {
         const { name, number, email, profile, student, employ, product } = req.body
+        if (!name || !number || !email || !profile || !student || !employ || !product) {
+            res.status(400).json({ error: "somthing is missing" })
+        }
 
-        if (!profile || !student || !employ || !product) {
             let data = await users.create({
                 name,
                 number,
                 email,
+                product,
+                profile,
+                student,
+                employ
             })
             res.status(200).json(data);
-        } else {
-            res.status(400).json({ error: "some thing is worng" })
-        }
+ 
 
     } catch (error) {
         res.status.json(error)
@@ -40,13 +44,14 @@ const findpost = async (req, res) => {
     try {
         // const {profile,student,employ,product} = req.body
         let data = await users.findById(req.params._id)
-        if(!data){
-            res.status(404).json({error:"data is missing"})
+        if (!data) {
+            res.status(404).json({ error: "data is missing" })
         }
-       let result = await users.findByIdAndUpdate(req.params._id,req.body,{new:true})
-       if(!result){
-        res.status.json({error:"not update"})
-       }
+
+        let result = await users.findByIdAndUpdate(req.params._id, req.body, { new: true })
+        if (!result) {
+            res.status.json({ error: "not update" })
+        }
         res.status(201).json(result)
 
     } catch (error) {
@@ -54,4 +59,22 @@ const findpost = async (req, res) => {
     }
 }
 
-module.exports = {postuser,findpost};
+
+
+const deleteusre = async (req, res) => {
+    try {
+        const data = await users.findById(req.params._id)
+        if (!data) {
+            res.status(400).json({ error: "id is missimg" })
+        }
+        await data.remove()
+
+    } catch (error) {
+        res.status(404).json(error)
+    }
+}
+
+
+
+
+module.exports = { postuser, findpost, deleteusre,getuser };

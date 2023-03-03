@@ -1,25 +1,39 @@
 const mongoose = require("mongoose")
 const Employschema = new mongoose.Schema({
     Employid:{
-        type:String
+        type:String,
+        required:[true,"please add the id"]
+
     },
     Employname:{
-        type:String
+        type:String,
+        required:[true,"please add the name"]
+
     },
     Employemail:{
-        type:String
+        type:String,
+        required:[true,"please add the email"]
+
     },
     Employnumber:{
-        type:String
+        type:String,
+        required:[true,"please add the number"]
+
     },
     Employaddress:{
-        type:String
+        type:String,
+        required:[true,"please add the address"]
+
     },
     Employdob:{
-        type:String
+        type:String,
+        required:[true,"please add the dob"]
+
     },
     Employment:{
-        type:String
+        type:String,
+        required:[true,"please add the ment"]
+
     },
 });
 

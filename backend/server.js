@@ -25,6 +25,8 @@ app.use("/api/singup",require("./routes/SingupRoutes"))
 app.use("/api/profile",require("./routes/profileRoutes"))
 app.use("/api/Employ",require("./routes/EmployRoutes"))
 app.use("/api/all",require("./routes/DeshbordRoutes"))
+app.use("/api/addcard",require("./routes/AddtocardRoutes"))
+app.use("/api/wishing",require("./routes/wishingroutes"))
 const storage = multer.diskStorage({
     destination: "./backend/IMG/",
     filename: (req, file, cb) => {
