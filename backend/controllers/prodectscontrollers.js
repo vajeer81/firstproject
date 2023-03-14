@@ -1,8 +1,6 @@
 const prodect = require("../model/prodectsmodel")
 
 
-
-
 const getpdt = async (req, res) => {
     try {
         const data = await prodect.find({})

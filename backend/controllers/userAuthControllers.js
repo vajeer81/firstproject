@@ -6,7 +6,6 @@ const User = require('../model/userAuthModel');
 
 
 
- 
 
 //des registeruser  new users
 // routes post /api/userAuth

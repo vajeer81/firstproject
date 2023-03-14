@@ -1,40 +1,39 @@
 const mongoose = require("mongoose")
 const Employschema = new mongoose.Schema({
-    Employid:{
-        type:String,
-        required:[true,"please add the id"]
+    Employid: {
+        type: String,
+        required: [true, "please add the id"]
 
     },
-    Employname:{
-        type:String,
-        required:[true,"please add the name"]
+    Employname: {
+        type: String,
+        required: [true, "please add the name"]
+    },
+    Employemail: {
+        type: String,
+        required: [true, "please add the email"]
 
     },
-    Employemail:{
-        type:String,
-        required:[true,"please add the email"]
+    Employnumber: {
+        type: String,
+        required: [true, "please add the number"]
 
     },
-    Employnumber:{
-        type:String,
-        required:[true,"please add the number"]
+    Employaddress: {
+        type: String,
+        required: [true, "please add the address"]
 
     },
-    Employaddress:{
-        type:String,
-        required:[true,"please add the address"]
+    Employdob: {
+        type: String,
+        required: [true, "please add the dob"]
 
     },
-    Employdob:{
-        type:String,
-        required:[true,"please add the dob"]
-
-    },
-    Employment:{
-        type:String,
-        required:[true,"please add the ment"]
+    Employment: {
+        type: String,
+        required: [true, "please add the ment"]
 
     },
 });
 
-module.exports = mongoose.model("Employ",Employschema)
+module.exports = mongoose.model("Employ", Employschema)

@@ -1,4 +1,12 @@
 const users = require("../model/usermodel")
+const EightData = require("../../apidata/img")
+
+
+
+const findapi = async(req,res)=>{
+    res.status(200).json(EightData)
+} 
+
 
 const getuser = async (req, res) => {
     try {
@@ -77,4 +85,4 @@ const deleteusre = async (req, res) => {
 
 
 
-module.exports = { postuser, findpost, deleteusre,getuser };
+module.exports = { postuser, findpost, deleteusre,getuser,findapi };

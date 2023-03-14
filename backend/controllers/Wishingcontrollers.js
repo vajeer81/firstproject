@@ -19,8 +19,8 @@ const getwishing = async (req, res) => {
 
 const postwishing = async (req, res) => {
     try {
-        const { title, image, dis,Likeimage } = req.body
-        if (!title || !image   || !dis || !Likeimage) {
+        const { title, image, dis, Likeimage } = req.body
+        if (!title || !image || !dis || !Likeimage) {
             res.status(400).json({ error: "missing the fild" })
         }
         const data = await wishing.create({

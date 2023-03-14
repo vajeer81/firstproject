@@ -27,4 +27,4 @@ const addtocard = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("Addcart",addtocard)
+module.exports = mongoose.model("Addcart",addtocard);

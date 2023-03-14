@@ -27,6 +27,7 @@ app.use("/api/Employ",require("./routes/EmployRoutes"))
 app.use("/api/all",require("./routes/DeshbordRoutes"))
 app.use("/api/addcard",require("./routes/AddtocardRoutes"))
 app.use("/api/wishing",require("./routes/wishingroutes"))
+app.use("/api/newproduct",require("./routes/newproductRoutes/productsroutes"))
 const storage = multer.diskStorage({
     destination: "./backend/IMG/",
     filename: (req, file, cb) => {
@@ -65,7 +66,6 @@ console.log(process.env.MONGO_URL);
 
 
 
-module.exports = uploard
 
 
 
